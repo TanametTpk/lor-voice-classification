@@ -16,17 +16,31 @@ class KeyDetector {
 
 let keyDetector = new KeyDetector()
 
-ioHook.on("mousedown", event => {
-    if (event.button == 2) {
+ioHook.on("keydown", event => {
+    if (event.keycode === 34) {
+        console.log("detect");
         keyDetector.setIsPressKey(true)
     }
-});
+})
 
-ioHook.on("mouseup", event => {
-    if (event.button == 2) {
+ioHook.on("keyup", event => {
+    if (event.keycode === 34) {
+        console.log("reles");
         keyDetector.setIsPressKey(false)
     }
-});
+})
+
+// ioHook.on("mousedown", event => {
+//     if (event.button == 2) {
+//         keyDetector.setIsPressKey(true)
+//     }
+// });
+
+// ioHook.on("mouseup", event => {
+//     if (event.button == 2) {
+//         keyDetector.setIsPressKey(false)
+//     }
+// });
 
 ioHook.start();
 

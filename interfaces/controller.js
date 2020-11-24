@@ -56,7 +56,9 @@ const pass = () => {
 
 module.exports = {
     exec: (label) => {
-        // if (!keyDetector.getIsPressKey()) return
+        // if (!keyDetector.getIsPressKey()) {
+        //     return
+        // }
 
         console.log(label);
         if (label == "check") moveToCheckCard()
