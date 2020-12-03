@@ -54,6 +54,10 @@ const pass = () => {
     robot.mouseClick()
 }
 
+const have = (word, text) => {
+    return text.includes(word)
+}
+
 module.exports = {
     exec: (label) => {
         // if (!keyDetector.getIsPressKey()) {
@@ -61,11 +65,11 @@ module.exports = {
         // }
 
         console.log(label);
-        if (label == "check") moveToCheckCard()
-        else if (label == "left" || label == "right") moveLeftRight(label == "left")
-        else if (label == "pass") pass()
-        else if (label == "allin") allIn()
-        else if (label == "in") summon()
-        else if (label == "reset") reset()
+        if (have("ดูไพ่", label)) moveToCheckCard()
+        else if (have("ซ้าย", label) || have("ขวา", label)) moveLeftRight(have("ซ้าย", label))
+        else if (have("ผ่าน", label)) pass()
+        else if (have("ตีทั้งหมด", label)) allIn()
+        else if (have("ลง", label)) summon()
+        else if (have("Reset", label)) reset()
     }
 }

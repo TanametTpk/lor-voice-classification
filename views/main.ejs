@@ -168,6 +168,17 @@
             console.log(lastDebounceTranscript);
             */
             final_transcript += transcript;
+            const data = {label: transcript}
+            fetch("/actions", {
+                  method: "POST",
+                  headers: {
+                      'Accept': 'application/json',
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(data)
+              }).then(res => {
+                  console.log("Request complete! response:", res);
+            });
           } else {
             interim_transcript += transcript;
           }
