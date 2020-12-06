@@ -5,6 +5,7 @@ from actions.selectCharacter import SelectCharacterAction
 from actions.useCard import UseCardAction
 from actions.selectEnemyCharacter import SelectEnemyCharacterAction
 from actions.resetMouse import ResetMouseAction
+from actions.selectNexus import SelectNexusAction
 
 def matchAction(text, actions):
     orders = []
@@ -29,9 +30,12 @@ def contextSelection(text):
     actions = [
         SelectCardAction(),
         SelectCharacterAction(),
+        SelectEnemyCharacterAction(),
         UseCardAction(),
         AttackAllAction(),
-        EndTurnAction()
+        EndTurnAction(),
+        ResetMouseAction(),
+        SelectNexusAction()
     ]
     orders = matchAction(text, actions)
 

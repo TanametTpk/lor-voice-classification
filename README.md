@@ -1,8 +1,7 @@
 # Usages
-- install node
-- npm i
-- node main.js
-- access to http://localhost:8081
+- run virsualenv
+- run python server.py
+- access to http://localhost:5000
 - press start
 - enjoy!!!
 
@@ -26,11 +25,22 @@
 ## Attack All
 - ["โจมตีทั้งหมด", "ตีทั้งหมด", "direct attack"]
 
+## Select Enemy Character
+- ["เลือกฝั่งตรงข้ามตัวที่", "เลือกศัตรูตัวที่", "เอาฝั่งตรงข้ามตัวที่", "เอาศัตรูตัวที่", "เลือกคู่แข่งตัวที่", "เอาคู่แข่งตัวที่"] n
+    - (ไม่มีต่อท้ายจะทำแค่ click ตัวฝั่งตรงข้าม)
+    - ["ลาก", "ดึง", "มา"] ตัวที่ m (ใช้เลือกฝั่งตรงข้ามมา ปู้ยี่ปู้ยำในสนาม)
+
+## Reset Mouse
+- ["reset", "รีเซ็ต"] (ใช้ reset mouse เมื่อบัง card หรือ ตัวละคร)
+
+## Reset Nexus
+- ["ตัวเอง", "ฝั่งมัน"] (ใช้คำพูดยาวเพื่อความถูกต้องเช่น โจมตีฝั่งมัน, เลือกตัวเอง เพราะ voice recognition จะทำงานได้ถูกต้องกว่า)
+
 ## End Turn
-- ["จบ", "skip", "ข้าม", "ผ่าน"]
+- ["จบ", "skip", "ผ่าน", "pass", "ok", "โอเค"]
 
 ## Sequence Example
-- ไบที่ 1 ใช้ ตีทั้งหมด ผ่าน
+- ใบที่ 1 ใช้ ตีทั้งหมด ผ่าน
 
 # Limitation
 - local model voice recognition ที่ใช้เป็น api ของ chrome จึงใช้ได้แค่ browser สกุล chrome เท่านั้น

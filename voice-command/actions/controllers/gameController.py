@@ -1,6 +1,8 @@
 import pyautogui
 from .ocr.core import getResources
 
+pyautogui.FAILSAFE = False
+
 def calculatePosition(startPoint, endPoint, itemWidth, xDefault, yDefault, selectIdx, max):
     MAX = endPoint
     MIN = startPoint
@@ -82,7 +84,7 @@ def dragToPosition(x, y):
 def pullEnemy(number):
     resources = getResources()
     x, y = getFieldPosition(number, resources["myField"])
-    dragToPosition(x, y)
+    dragToPosition(x, y - 293)
     print("pull", number)
 
 def blockEnemy(number):
@@ -111,3 +113,12 @@ def dragToMid():
 
 def resetMouse():
     pyautogui.moveTo(0, 0)
+    print("reset")
+
+def selectNexus(side="my"):
+    x = 238
+    y = 659
+    if side == "enemy":
+        y = 417
+    pyautogui.click(x=x, y=y) 
+    print("select " + side + " nexus")

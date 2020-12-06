@@ -12,7 +12,7 @@ class SelectEnemyCharacterAction(Actions):
             "เลือกคู่แข่งตัวที่",
             "เอาคู่แข่งตัวที่",
         ])
-        self.pullWords = ["ลาก", "ดึง"]
+        self.pullWords = ["ลาก", "ดึง", "มา"]
 
     def checkWordMatch(self, text, mode='pull'):
         words = self.pullWords
