@@ -38,6 +38,7 @@ class SelectCharacterAction(Actions):
 
         characterPart, actionPart = self.splitContext(text, word)
         charIndex = extractAndGetNumber(characterPart)
+        print(charIndex)
         selectCharacter(charIndex, mode='friendly', place='onStage')
 
         if mode == 'block':

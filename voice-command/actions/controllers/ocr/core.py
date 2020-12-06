@@ -11,7 +11,7 @@ import os
 
 os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
-model = tf.keras.models.load_model(os.path.abspath(os.getcwd()) + "\\ocr\\models\\newmodel.h5")
+model = tf.keras.models.load_model(os.path.abspath(os.getcwd()) + "\\actions\\controllers\\ocr\\models\\newmodel.h5")
 sct = mss()
 
 def calculatePosition(xStart, yStart, xEnd, yEnd):
@@ -86,16 +86,16 @@ ownField = calculatePosition(373, 600, 1533, 799)
 def getResources():
 
     cards = getNumberOfCards(cardOnHandPosition)
-    enemyMonster = countCharacter(enemyMonster)
+    countEnemyMonster = countCharacter(enemyMonster)
     myMonster = countCharacter(ownMonster)
-    enemyField = countCharacter(enemyField)
+    countEnemyField = countCharacter(enemyField)
     myField = countCharacter(ownField)
 
     return {
         "cards": cards,
-        "enemyMonster": enemyMonster,
+        "enemyMonster": countEnemyMonster,
         "myMonster": myMonster,
-        "enemyField": enemyField,
+        "enemyField": countEnemyField,
         "myField": myField
     }
 

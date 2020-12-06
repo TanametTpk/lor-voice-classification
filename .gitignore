@@ -3,3 +3,5 @@ package-lock.json
 
 ocr/models/
 ocr/saved_model/
+
+**/__pycache__

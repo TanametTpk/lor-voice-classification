@@ -42,8 +42,3 @@ def contextSelection(text):
 
         currentContext = text[order["idx"]:endContext]
         order["action"].do(currentContext)
-
-chooseCommand = "เลือกใบที่8 ใช้ และ เลือกตัวที่3 กันตัวที่  3 และ ผ่าน"
-
-print("test: choose card ---------")
-contextSelection(chooseCommand)
