@@ -6,7 +6,7 @@ class SelectCharacterAction(Actions):
     def __init__(self):
         super().__init__(["เลือกตัวที่", "เอาตัวที่"])
         self.attackWords = ["โจมตี", "ตี", "attack"]
-        self.blockWords = ["ป้องกัน", "กัน", "block"]
+        self.blockWords = ["ป้องกัน", "กัน", "block", "บล็อค"]
 
     def checkWordMatch(self, text, mode='attack'):
         words = self.attackWords
@@ -14,7 +14,7 @@ class SelectCharacterAction(Actions):
             words = self.blockWords
         return isMatch(text, words)
 
-    def isWordActionRight(self, text):
+    def isContinusWordAction(self, text):
         isAttack, attackWord = self.checkWordMatch(text, mode='attack')
         isBlock, blockWord = self.checkWordMatch(text, mode='block')
 
@@ -31,14 +31,15 @@ class SelectCharacterAction(Actions):
         return [ text[:splitIdx], text[splitIdx:] ]
 
     def do(self, text):
-        isRight, mode, word = self.isWordActionRight(text)
+        isRight, mode, word = self.isContinusWordAction(text)
 
         if not isRight:
+            charIndex = extractAndGetNumber(text)
+            selectCharacter(charIndex, mode='friendly', place='onStage')
             return
 
         characterPart, actionPart = self.splitContext(text, word)
         charIndex = extractAndGetNumber(characterPart)
-        print(charIndex)
         selectCharacter(charIndex, mode='friendly', place='onStage')
 
         if mode == 'block':

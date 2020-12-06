@@ -57,17 +57,11 @@ def selectCard(number):
     x, y = getCardPosition(number, resources["cards"])
     pyautogui.moveTo(x, y)
 
-def getPositionPlace(place):
-    if place == 'onStage':
-        return 0, 0
-    elif place == 'onField':
-        return 0, 0
-
 def selectEnemyChracter(number, place):
     print("select enemy character", number)
     resources = getResources()
     x, y = getCharacterPosition(number, resources["enemyMonster"])
-    pyautogui.click(x=x, y=y + 0) 
+    pyautogui.click(x=x, y=y - 727) 
 
 def selectFriendlyCharacter(number, place):
     print("select my character", number)
@@ -84,6 +78,12 @@ def selectCharacter(number, mode='friendly', place='onStage'):
 def dragToPosition(x, y):
     pyautogui.dragTo(x, y, 0.3, button='left')
     print("drag2", x, y)
+
+def pullEnemy(number):
+    resources = getResources()
+    x, y = getFieldPosition(number, resources["myField"])
+    dragToPosition(x, y)
+    print("pull", number)
 
 def blockEnemy(number):
     resources = getResources()
@@ -108,3 +108,6 @@ def dragToMid():
     midY = 576
     pyautogui.dragTo(midX, midY, 0.3, button='left')
     print("drag2mid")
+
+def resetMouse():
+    pyautogui.moveTo(0, 0)

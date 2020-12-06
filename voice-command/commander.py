@@ -3,6 +3,8 @@ from actions.endTurn import EndTurnAction
 from actions.selectCard import SelectCardAction
 from actions.selectCharacter import SelectCharacterAction
 from actions.useCard import UseCardAction
+from actions.selectEnemyCharacter import SelectEnemyCharacterAction
+from actions.resetMouse import ResetMouseAction
 
 def matchAction(text, actions):
     orders = []
