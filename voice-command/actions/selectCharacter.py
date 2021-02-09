@@ -32,15 +32,19 @@ class SelectCharacterAction(Actions):
 
     def do(self, text):
         isRight, mode, word = self.isContinusWordAction(text)
+        place = "onStage"
+
+        if "สนาม" in text:
+            place = "onField"
 
         if not isRight:
             charIndex = extractAndGetNumber(text)
-            selectCharacter(charIndex, mode='friendly', place='onStage')
+            selectCharacter(charIndex, mode='friendly', place=place)
             return
 
         characterPart, actionPart = self.splitContext(text, word)
         charIndex = extractAndGetNumber(characterPart)
-        selectCharacter(charIndex, mode='friendly', place='onStage')
+        selectCharacter(charIndex, mode='friendly', place=place)
 
         if mode == 'block':
             enemyIndex = extractAndGetNumber(actionPart)

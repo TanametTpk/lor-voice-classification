@@ -71,11 +71,18 @@ def selectFriendlyCharacter(number, place):
     x, y = getCharacterPosition(number, resources["myMonster"])
     pyautogui.click(x=x, y=y) 
 
+def selectOnField(number):
+    resources = getResources()
+    x, y = getFieldPosition(number, resources["myField"])
+    pyautogui.click(x=x, y=y)
+
 def selectCharacter(number, mode='friendly', place='onStage'):
-    if mode == 'friendly':
+    if mode == 'friendly' and place == "onStage":
         selectFriendlyCharacter(number, place)
-    elif mode == 'enemy':
+    elif mode == 'enemy' and place == "onStage":
         selectEnemyChracter(number, place)
+    elif mode == 'friendly' and place == "onField":
+        selectOnField(number)
 
 def dragToPosition(x, y):
     pyautogui.dragTo(x, y, 0.3, button='left')

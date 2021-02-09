@@ -6,6 +6,7 @@ app = Flask(__name__)
 @app.route('/actions', methods=["POST"])
 def makeActions():
     content = request.json
+    print(content["msg"])
     if "msg" in content:
         contextSelection(content["msg"])
     return jsonify({"status": 200})
@@ -13,6 +14,7 @@ def makeActions():
 @app.route('/webhooks', methods=["POST"])
 def webhooks():
     contents = request.json
+    print(contents)
     for content in contents:
         if "message" in content:
             contextSelection(content["message"])
