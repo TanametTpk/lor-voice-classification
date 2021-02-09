@@ -10,6 +10,14 @@ def makeActions():
         contextSelection(content["msg"])
     return jsonify({"status": 200})
 
+@app.route('/webhooks', methods=["POST"])
+def webhooks():
+    contents = request.json
+    for content in contents:
+        if "message" in content:
+            contextSelection(content["message"])
+    return jsonify({"status": 200})
+
 @app.route('/', methods=["GET"])
 def home():
     return render_template('index.html')
