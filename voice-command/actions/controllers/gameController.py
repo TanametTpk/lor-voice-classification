@@ -53,6 +53,9 @@ def getFieldPosition(selectIdx, max):
     y = 708
     return calculatePosition(MIN, MAX, CARDWIDTH, x, y, selectIdx, max)
 
+def selectSpell():
+    pyautogui.click(x=958, y=534) 
+
 def selectCard(number):
     resources = getResources()
     print("select card", number)
@@ -71,9 +74,14 @@ def selectFriendlyCharacter(number, place):
     x, y = getCharacterPosition(number, resources["myMonster"])
     pyautogui.click(x=x, y=y) 
 
-def selectOnField(number):
+def selectMyMonsterOnField(number):
     resources = getResources()
     x, y = getFieldPosition(number, resources["myField"])
+    pyautogui.click(x=x, y=y)
+
+def selectEnemyMonsterOnField(number):
+    resources = getResources()
+    x, y = getFieldPosition(number, resources["enemyField"])
     pyautogui.click(x=x, y=y)
 
 def selectCharacter(number, mode='friendly', place='onStage'):
@@ -82,7 +90,9 @@ def selectCharacter(number, mode='friendly', place='onStage'):
     elif mode == 'enemy' and place == "onStage":
         selectEnemyChracter(number, place)
     elif mode == 'friendly' and place == "onField":
-        selectOnField(number)
+        selectMyMonsterOnField(number)
+    elif mode == 'enemy' and place == "onField":
+        selectEnemyMonsterOnField(number)
 
 def dragToPosition(x, y):
     pyautogui.dragTo(x, y, 0.3, button='left')

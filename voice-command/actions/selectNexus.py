@@ -1,5 +1,5 @@
 from .abstract.Actions import Actions
-from .controllers.gameController import selectNexus, selectOnField
+from .controllers.gameController import selectNexus
 
 class SelectNexusAction(Actions):
     def __init__(self):
