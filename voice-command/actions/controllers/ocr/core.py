@@ -34,12 +34,18 @@ def getImg(position):
 
 def countCard(img):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    circles = cv2.HoughCircles(gray, cv2.HOUGH_GRADIENT, 1, 20, param1=50, param2=30, minRadius=15, maxRadius=20)
+    circles = cv2.HoughCircles(gray, cv2.HOUGH_GRADIENT, 1, 20, param1=50, param2=30, minRadius=15, maxRadius=23)
 
     if circles is None:
-        return 0
+        return 0, []
 
-    return len(circles[0])
+    preprocessCircle = []
+    _circles = np.round(circles[0, :]).astype("int")
+    for (x, y, r) in _circles:
+        preprocessCircle.append([x + 452, y + 978, r])
+
+    preprocessCircle = sorted(preprocessCircle, key=lambda x: x[0])
+    return len(circles[0]), preprocessCircle
 
 def getNumberOfCards(position):
     img = getImg(position)
@@ -85,7 +91,7 @@ ownField = calculatePosition(373, 600, 1533, 799)
 
 def getResources():
 
-    cards = getNumberOfCards(cardOnHandPosition)
+    cards, cardPositions = getNumberOfCards(cardOnHandPosition)
     countEnemyMonster = countCharacter(enemyMonster)
     myMonster = countCharacter(ownMonster)
     countEnemyField = countCharacter(enemyField)
@@ -93,10 +99,11 @@ def getResources():
 
     return {
         "cards": cards,
+        "cardPositions": cardPositions,
         "enemyMonster": countEnemyMonster,
         "myMonster": myMonster,
         "enemyField": countEnemyField,
-        "myField": myField
+        "myField": myField,
     }
 
 # draw circle code

@@ -12,8 +12,7 @@ class SelectCardAction(Actions):
             "เอาไพ่ใบที่",
             "เอาไพ่ที่",
             "เอาใบที่",
-            "ไพ่ที่",
-            "ใบที่"
+            "ไพ่ใบที่"
         ])
 
     def do(self, text):

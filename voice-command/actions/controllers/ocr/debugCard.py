@@ -26,7 +26,7 @@ def getImg(position):
 
 def getCircle(img):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    circles = cv2.HoughCircles(gray, cv2.HOUGH_GRADIENT, 1, 20, param1=50, param2=30, minRadius=15, maxRadius=20)
+    circles = cv2.HoughCircles(gray, cv2.HOUGH_GRADIENT, 1, 20, param1=50, param2=30, minRadius=15, maxRadius=23)
 
     return circles, gray
 
@@ -38,8 +38,10 @@ while 1:
 
     if circles is not None:
         circles = np.round(circles[0, :]).astype("int")
+        print("---")
         for (x, y, r) in circles:
             cv2.circle(gray, (x, y), r, (0, 255, 0), 4)
+            print(x, y, r)
 
     cv2.imshow('gray scale', np.array(gray))
     if cv2.waitKey(25) & 0xFF == ord('q'):

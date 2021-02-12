@@ -1,7 +1,17 @@
 import pyautogui
-from .ocr.core import getResources
+from .ocr.core import getResources as coreGetResorces
+import time
 
 pyautogui.FAILSAFE = False
+
+def getResources():
+    x, y = pyautogui.position()
+    resetMouse()
+    time.sleep(0.3)
+    resources = coreGetResorces()
+    pyautogui.moveTo(x, y)
+
+    return resources
 
 def calculatePosition(startPoint, endPoint, itemWidth, xDefault, yDefault, selectIdx, max):
     MAX = endPoint
@@ -24,15 +34,17 @@ def calculatePosition(startPoint, endPoint, itemWidth, xDefault, yDefault, selec
 
     return x, y
 
-def getCardPosition(selectIdx, max):
-    MAX = 1449
-    MIN = 480
-    CARDWIDTH = 165
+def getCardPosition(selectIdx, max, refPosition):
+    selectIdx = selectIdx - 1
+    if selectIdx < 0 or len(refPosition) < 1:
+        return 0, 0
 
-    x = 960
-    y = 1040
+    if len(refPosition) <= selectIdx:
+        selectIdx = len(refPosition) - 1
 
-    return calculatePosition(MIN, MAX, CARDWIDTH, x, y, selectIdx, max)
+    [x, y, r] = refPosition[selectIdx]
+
+    return x + r, y + r
 
 def getCharacterPosition(selectIdx, max):
     MAX = 1404
@@ -59,7 +71,7 @@ def selectSpell():
 def selectCard(number):
     resources = getResources()
     print("select card", number)
-    x, y = getCardPosition(number, resources["cards"])
+    x, y = getCardPosition(number, resources["cards"], resources["cardPositions"])
     pyautogui.moveTo(x, y)
 
 def selectEnemyChracter(number, place):
@@ -139,3 +151,30 @@ def selectNexus(side="my"):
         y = 417
     pyautogui.click(x=x, y=y) 
     print("select " + side + " nexus")
+
+def pullBack():
+    dragToPosition(1000, 1000)
+    resetMouse()
+
+def replaceCard(selectIdx):
+    xTargets = [527, 811, 1079, 1353]
+    y = 543
+
+    selectIdx = selectIdx - 1
+    if not (selectIdx > -1 and selectIdx < 4):
+        return
+
+    x = xTargets[selectIdx]    
+    pyautogui.click(x=x, y=y)
+
+def surrender():
+    pyautogui.click(x=1852, y=52)
+    time.sleep(0.1)
+    pyautogui.click(x=918, y=893)
+    time.sleep(0.1)
+    pyautogui.click(x=1102, y=609)
+
+def cancelSpell():
+    # pyautogui.rightClick()
+    selectSpell()
+    pullBack()
